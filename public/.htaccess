@@ -1,0 +1,14 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Redireciona requisições da API para a pasta api/
+RewriteRule ^api/(.*)$ api/$1 [L]
+
+# Serve arquivos estáticos diretamente
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redireciona tudo para index.html (SPA)
+RewriteRule ^ index.html [L]

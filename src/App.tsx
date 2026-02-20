@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -47,6 +48,10 @@ function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isDashboard = location.pathname.startsWith('/dashboard');
   const isLogin = location.pathname === '/login';
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (isDashboard || isLogin) return <>{children}</>;
 

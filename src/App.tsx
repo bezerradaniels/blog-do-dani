@@ -6,6 +6,10 @@ import Category from './pages/Category';
 import Article from './pages/Article';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Sobre from './pages/Sobre';
+import Contato from './pages/Contato';
+import Privacidade from './pages/Privacidade';
+import Termos from './pages/Termos';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
 
@@ -64,6 +68,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/categoria/:slug" element={<Category />} />
             <Route path="/artigo/:slug" element={<Article />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/privacidade" element={<Privacidade />} />
+            <Route path="/termos" element={<Termos />} />
             <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           </Routes>

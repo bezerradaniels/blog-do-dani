@@ -2,22 +2,18 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, Share2, Bookmark, ThumbsUp, ChevronRight } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
-import { posts as mockPosts, comments as mockComments } from '../data/mock';
-import type { Post, Comment } from '../types';
+import { posts as mockPosts } from '../data/mock';
+import type { Post } from '../types';
 
 export default function Article() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [commentName, setCommentName] = useState('');
-  const [commentContent, setCommentContent] = useState('');
   const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const found = mockPosts.find(p => p.slug === slug);
     if (found) {
       setPost(found);
-      setComments(mockComments.filter(c => c.post_id === found.id));
       setRelatedPosts(
         mockPosts
           .filter(p => p.category.id === found.category.id && p.id !== found.id)
@@ -27,21 +23,6 @@ export default function Article() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const handleComment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!commentName.trim() || !commentContent.trim()) return;
-    const newComment: Comment = {
-      id: Date.now(),
-      post_id: post!.id,
-      author_name: commentName,
-      avatar: `https://i.pravatar.cc/150?u=${commentName}`,
-      content: commentContent,
-      created_at: new Date().toISOString(),
-    };
-    setComments(prev => [...prev, newComment]);
-    setCommentName('');
-    setCommentContent('');
-  };
 
   if (!post) {
     return (
@@ -134,52 +115,6 @@ export default function Article() {
               </div>
             </div>
 
-            {/* Comments */}
-            <div className="mt-10">
-              <h2 className="text-xl font-bold text-text mb-6">Comentários ({comments.length})</h2>
-
-              <form onSubmit={handleComment} className="mb-8 space-y-3">
-                <input
-                  type="text"
-                  value={commentName}
-                  onChange={e => setCommentName(e.target.value)}
-                  placeholder="Seu nome"
-                  className="w-full px-4 py-2.5 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                />
-                <textarea
-                  value={commentContent}
-                  onChange={e => setCommentContent(e.target.value)}
-                  placeholder="Adicione um comentário..."
-                  rows={3}
-                  className="w-full px-4 py-2.5 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
-                />
-                <div className="flex justify-end">
-                  <button
-                    type="submit"
-                    className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition"
-                  >
-                    Publicar
-                  </button>
-                </div>
-              </form>
-
-              <div className="space-y-6">
-                {comments.map(comment => (
-                  <div key={comment.id} className="flex gap-3">
-                    <img src={comment.avatar} alt={comment.author_name} className="w-9 h-9 rounded-full object-cover shrink-0" />
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-text">{comment.author_name}</span>
-                        <span className="text-xs text-text-muted">
-                          {new Date(comment.created_at).toLocaleDateString('pt-BR')}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-sm text-text-muted">{comment.content}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </article>
 
           {/* Sidebar */}

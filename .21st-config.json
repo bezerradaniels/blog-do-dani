@@ -1,0 +1,72 @@
+{
+  "name": "Dani Bezerra Blog",
+  "description": "Marketing digital blog with React, TypeScript and Tailwind CSS",
+  "techStack": ["React", "TypeScript", "Tailwind CSS", "Vite", "PHP", "SQLite"],
+  "componentLibrary": "Custom components with Tailwind CSS",
+  "colorScheme": {
+    "primary": "#0ea5e9",
+    "primary-dark": "#0284c7",
+    "primary-light": "#38bdf8",
+    "accent": "#f59e0b",
+    "bg": "#f8fafc",
+    "surface": "#ffffff",
+    "text": "#1e293b",
+    "text-muted": "#64748b",
+    "border": "#e2e8f0"
+  },
+  "typography": {
+    "font-sans": "'Stack Sans Text', system-ui, -apple-system, sans-serif",
+    "font-headline": "'Stack Sans Headline', system-ui, -apple-system, sans-serif"
+  },
+  "components": {
+    "header": "src/components/Header.tsx",
+    "footer": "src/components/Footer.tsx",
+    "postCard": "src/components/PostCard.tsx",
+    "sidebar": "src/components/Sidebar.tsx",
+    "adBanner": "src/components/AdBanner.tsx",
+    "richTextEditor": "src/components/RichTextEditor.tsx"
+  },
+  "pages": {
+    "home": "src/pages/Home.tsx",
+    "article": "src/pages/Article.tsx",
+    "category": "src/pages/Category.tsx",
+    "sobre": "src/pages/Sobre.tsx",
+    "contato": "src/pages/Contato.tsx",
+    "privacidade": "src/pages/Privacidade.tsx",
+    "termos": "src/pages/Termos.tsx",
+    "dashboard": "src/pages/Dashboard.tsx",
+    "login": "src/pages/Login.tsx"
+  },
+  "api": {
+    "base": "/api",
+    "endpoints": [
+      "posts.php",
+      "categories.php", 
+      "authors.php",
+      "comments.php",
+      "ads.php",
+      "auth.php",
+      "users.php",
+      "upload.php"
+    ]
+  },
+  "features": {
+    "carousel": "Auto-advancing carousel with lateral slide animations",
+    "dashboard": "Full admin dashboard with CRUD operations",
+    "authentication": "Session-based auth with role management",
+    "ads": "Banner management system",
+    "richTextEditor": "TipTap editor integration",
+    "responsive": "Mobile-first design with Tailwind breakpoints"
+  },
+  "build": {
+    "output": "dist",
+    "base": "/",
+    "server": "Hostinger with Apache + PHP 8.2 + SQLite"
+  },
+  "canvasPrompts": {
+    "createComponent": "Create a React component using TypeScript and Tailwind CSS following the existing design system",
+    "modifyComponent": "Modify this component while maintaining TypeScript types and Tailwind classes",
+    "responsiveDesign": "Make this component responsive for mobile, tablet and desktop using Tailwind breakpoints",
+    "addAnimation": "Add smooth animations and transitions using CSS or Tailwind animation classes"
+  }
+}

@@ -26,3 +26,7 @@ api/uploads/
 *.njsproj
 *.sln
 *.sw?
+
+# 21st integration files
+.21st-temp/
+21st-exports/

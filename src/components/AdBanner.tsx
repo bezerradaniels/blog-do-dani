@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GlowCard } from './ui/spotlight-card';
 
 interface Ad {
   id: number;
@@ -30,7 +31,7 @@ export default function AdBanner({ position = 'sidebar' }: Props) {
   if (!ad) return null;
 
   const content = (
-    <div className="rounded-xl overflow-hidden bg-primary text-white">
+    <GlowCard glowColor="orange" size="md" customSize className="bg-primary text-white overflow-hidden">
       {ad.image && (
         <img
           src={ad.image}
@@ -52,7 +53,7 @@ export default function AdBanner({ position = 'sidebar' }: Props) {
           </div>
         )}
       </div>
-    </div>
+    </GlowCard>
   );
 
   if (ad.link) {
